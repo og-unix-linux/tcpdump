@@ -1,0 +1,97 @@
+linux:
+	-window size:
+		"win 5840"
+		normal sets of windows sizes "win 32120"
+	-TTL:
+		"ttl 64"
+		verify on linux os cmd:
+		More /procs/sys/net/ipv4/ip_default_ttl
+	-IP ID:
+		"id '#'"
+		ip id number always changes  randomly
+		#require numerous packets to detect i.e. TCP SYN
+	-TCP OPTIONS:
+		-# of nops:
+			1
+		-packet length:
+			"len 60"
+			<linux is the only os that uses total header length size of 60 bytes>
+openbsd:
+	-window size:
+		"win 16384"
+		
+	-TTL:
+		"ttl 64"
+			#verify on linux os cmd:
+			#cat /proc/sys/net/ipv4/ip_default_ttl
+	-IP ID:
+		"id '#'"
+		ip id number always changes  randomly
+		<require numerous packets to detect i.e. TCP SYN>
+	-TCP OPTIONS:
+		-# of nops: 
+			5 
+			<unquire to openbsd>
+		-packet length:
+			"len 64"
+			<unquire to openbsd>
+solaris:
+	-window size:
+		"win 8760"
+		
+	-TTL:
+		"ttl 255"
+		<BIG unquie to solaris>
+			#verify on linux os cmd:
+			#More /procs/sys/net/ipv4/ip_default_ttl
+	-IP ID:
+		"id '#+1'"
+		<unquie to solaris>
+			#ip id number increments by one ALL the time
+			#require numerous packets to detect i.e. TCP SYN
+	-TCP OPTIONS:
+	
+		-packet length:
+			"len 44"
+			<unquie to solaris>
+			
+aix: 
+	-window size:
+		"win 16384"
+			#Windows uses this window size as well
+			<this + solaris makes it unique>
+	-TTL:
+		"ttl 64"
+			#verify on linux os cmd:
+			#More /procs/sys/net/ipv4/ip_default_ttl
+	-IP ID:
+		"id '#+1'"
+		<unquie to solaris>
+			#ip id number increments by one ALL the time
+			#require numerous packets to detect i.e. TCP SYN
+	-TCP OPTIONS:
+	
+		-packet length:
+			"len 44"
+			<unquie to solaris>
+			
+windows2000:
+	-window size:
+		"win 16384"
+		#Same as aix
+	-TTL:
+		"ttl 128"
+		<unquie	to windows>
+	-IP ID:
+		"id '#+1'"
+		
+			#ip id number increments by one ALL the time
+			#require numerous packets to detect i.e. TCP SYN
+
+	-TCP OPTIONS:
+		-# of nops: 
+			2 
+			<unquire to windows>	
+		-packet length:
+			"len 48"
+		<unquie	to windows>
