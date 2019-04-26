@@ -1,0 +1,62 @@
+sudo tcpdump -i eth0 port 80 -c7 -XX #ascii info
+
+sudo tcpdump -i eth0 port 80 -c7 -A #info
+
+sudo tcpdump -i any
+
+###other basic commands:
+
+tcpdump -h #version
+
+sudo tcpdump -i eth0  -c 5 -n #see ip address vs hostnames
+
+sudo tcpdump -i eth0  -s96 # captures only 96 bytes of packet data, loss or out-of-order packets of larger data transfer 64 bytes are good, application layer troubleshooting 96-65535 bytes are good.
+
+sudo tcpdump -i eth0  -c20 -n tcp and dst port 443 -t # capture only tcp data with destination to port 443
+
+sudo tcpdump -i eth0  -c20 -n tcp and dst port 443 -t -S #turn off sequence numbers
+
+sudo tcpdump -i eth0  port 53 -n #dns requests
+
+sudo tcpdump -i eth0  port 53 -n -w capture.pcap #write to a file
+
+sudo tcpdump -i eth0  port 53 -n -c20 -w capture.pcap #write only 20 captures to file
+
+||  sudo tcpdump -i eth0  port 53 -n -w capture.pcap -v -c20  #write only 20 captures to file
+
+sudo tcpdump -n -r capture.pcap #read files
+
+sudo tcpdump -n -r capture.pcap | less # can scroll output
+
+sudo tcpdump -i eth0 -n host 10.0.0.3 -c5 #read traffic to and from .3
+
+sudo tcpdump -i eth0 -n src host 10.0.0.3 #see traffic originating from a host
+
+sudo tcpdump -i eth0 -n host 10.0.0.1 and host 10.0.0.3 -c5 #see traffic from two hosts
+sudo tcpdump -i eth0 -n host 10.0.0.1 and port 80 -c5 #see traffic from a host and port
+
+sudo tcpdump -i eth0 -n "host 10.0.0.1 \
+and (port 80 or port 443)" #see traffic to two ports
+
+sudo tcpdump -i eth0 -n -c100 "src net 192.168.0.0/16 \
+and not dst net 192.168.0.0/16 and not dst net 10.0.0.0/8" #see traffic from source but exclude two sub nets
+#exclude multicast also
+
+sudo tcpdump -i eth0 -n eth0 ether host 28:15:2e:1f:25:49 #see traffic to mac
+
+sudo tcpdump -i eth0 -n eth0 ether host 28:15:2e:1f:25:49 -e #see all output addresses as mac address
+
+sudo tcpdump -i eth0 -n eth0 ip6 #see ipv6
+ping6
+
+sudo tcpdump -i eth0 -n eth0 "tcp[tcpflags] \
+& tcp-syn !=0" #see tcp flags
+
+sudo tcpdump -i eth0 -n eth0 "tcp[tcpflags] \
+& tcp-rst !=0" #see tcp reset flags
+
+sudo tcpdump -i eth0 -c5 -q -t #timestamp
+
+sudo tcpdump -i eth0  -c5 -q -ttt
+
+sudo tcpdump -i eth0 -c5 -q -ttttt
